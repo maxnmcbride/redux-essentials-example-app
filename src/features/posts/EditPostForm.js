@@ -1,16 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
 import { postUpdated } from "./postsSlice";
 
-export const EditPostForm = ({match}) => {
-    const {postId} = match.params
+export const EditPostForm = ({ match }) => {
+    const { postId } = match.params
 
     const post = useSelector(state =>
         state.posts.find(post => post.id === postId)
-        )
-    
+    )
+
     const [title, setTitle] = useState(post.title)
     const [content, setContent] = useState(post.content)
 
@@ -39,7 +39,14 @@ export const EditPostForm = ({match}) => {
                     placeholder="What's on your mind?"
                     value={title}
                     onChange={onTitleChanged}
-                />    
+                />
+                <label htmlFor="postContent">Content:</label>
+                <textarea
+                    id="postContent"
+                    name="postContent"
+                    value={content}
+                    onChange={onContentChanged}
+                />
             </form>
             <button type="button" onClick={onSavePostClicked}>
                 Save Post
