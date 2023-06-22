@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+
 
 const initialState = [
     { id: '1', title: 'First Post!', content: 'Bon Jour!' },
@@ -12,15 +13,16 @@ const postsSlice = createSlice({
         postAdded(state, action) {
             state.push(action.payload)
         },
-        prepare(title, content){
+        prepare(title, content, userId){
             return{
                 payload:{
                     id: nanoid(),
                     title,
-                    content
+                    content,
+                    user: userId
                 }
             }
-        }
+        },
         postUpdated(state, action) {
             const { id, title, content } = action.payload
             const existingPost = state.find(post => post.id === id)
@@ -33,7 +35,6 @@ const postsSlice = createSlice({
 })
 
 export const { postAdded, postUpdated } = postsSlice.actions
-export const { postAdded } = postsSlice.actions
 
 // When we write the postAdded reducer function, createSlice will automatically 
 // generate an "action creator" function with the same name. We can export that 
