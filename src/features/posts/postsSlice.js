@@ -84,3 +84,17 @@ const postsSlice = createSlice({
 export const { postAdded, postUpdated, reactionAdded } = postsSlice.actions
 
 export default postsSlice.reducer;
+
+export const selectAllPosts = state => state.posts
+
+export const selectPostById = (state, postId) =>
+  state.posts.find(post => post.id === postId)
+
+// It's often a good idea to encapsulate data lookups by writing reusable selectors. 
+// You can also create "memoized" selectors that can help improve performance, 
+// which we'll look at in a later part of this tutorial.
+// But, like any abstraction, it's not something you should do all the time, 
+// everywhere. Writing selectors means more code to understand and maintain. Don't 
+// feel like you need to write selectors for every single field of your state. 
+// Try starting without any selectors, and add some later when you find yourself 
+// looking up the same values in many parts of your application code.
