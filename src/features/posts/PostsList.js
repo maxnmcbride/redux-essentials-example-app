@@ -31,7 +31,6 @@ PostExcerpt = React.memo(PostExcerpt)
 export const PostsList = () => {
   const dispatch = useDispatch()
   const orderedPostIds = useSelector(selectPostIds)
-
   const postStatus = useSelector(state => state.posts.status)
   const error = useSelector(state => state.posts.error)
 
